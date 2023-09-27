@@ -2,7 +2,7 @@ import { Loading, Tours } from "./components";
 import { useTours } from "./context";
 
 function App() {
-  const { isLoading, tours, reloadAllTours } = useTours();
+  const { isLoading, tours, isError, reloadAllTours } = useTours();
 
   if (isLoading) {
     return (
@@ -10,6 +10,16 @@ function App() {
         <section>
           <Loading />;
         </section>
+      </main>
+    );
+  }
+
+  if (isError) {
+    return (
+      <main>
+        <div className="title">
+          <h2>An error occurred</h2>
+        </div>
       </main>
     );
   }

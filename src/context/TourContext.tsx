@@ -5,6 +5,7 @@ import axios from "axios";
 interface ToursProps {
   tours: Tours[];
   isLoading: boolean;
+  isError: boolean;
   deleteSingleTour: (id: string) => void;
   reloadAllTours: () => void;
   truncateInfo: (info: string) => string;
@@ -33,6 +34,8 @@ export const TourProvider = (props: { children: React.ReactNode }) => {
       setTours(data);
       setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
+      setIsError(true);
       console.log(error);
     }
   };
@@ -57,6 +60,7 @@ export const TourProvider = (props: { children: React.ReactNode }) => {
   const value: ToursProps = {
     tours,
     isLoading,
+    isError,
     deleteSingleTour,
     reloadAllTours,
     truncateInfo,
